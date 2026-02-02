@@ -13,7 +13,7 @@ MONGODB_HOST=mongodb.daws86s.fun
 MYSQL_HOST=mysql.daws86s.fun
 
 mkdir -p $LOGS_FOLDER
-echo  -e "$(timestamp) | Script started executed at: $(date)" | tee -a $LOG_FILE
+echo  -e "$(date "+%Y-%m-%d %H:%M:%S") | Script started executed at: $(date)" | tee -a $LOG_FILE
 
 check_root(){
     if [ $USERID -ne 0 ]; then
@@ -100,7 +100,7 @@ app_restart(){
 print_total_time(){
     END_TIME=$(date +%s)
     TOTAL_TIME=$(( $END_TIME - $START_TIME ))
-    echo -e "$(timestamp) | Script executed in: $Y $TOTAL_TIME Seconds $N"
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | Script executed in: $Y $TOTAL_TIME Seconds $N"
 }
 
 timestamp() {
@@ -108,7 +108,7 @@ timestamp() {
 }
 
 log() {
-    echo -e "$(timestamp) | $1" | tee -a "$LOG_FILE"
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a "$LOG_FILE"
 }
 
 log_cmd() {
